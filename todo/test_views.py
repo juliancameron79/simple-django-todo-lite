@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect, get_object_or_404
 from .models import Item
 
 
@@ -19,7 +19,7 @@ class TestViews(TestCase):
         item = Item(name="Create a Test")
         item.save()
 
-        page = self.client.get("/edit/{0}".format(item.id))
+        page = self.client.get('/edit/{0}'.format(item.id))
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "item_form.html")
 
